@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cl4b3sik50vxf"]
+
+[ext_resource type="Script" uid="uid://c73aokgfu4dhv" path="res://scripts/ui_slot.gd" id="1_t1p4w"]
+
+[node name="UISlot" type="PanelContainer" unique_id=823146214]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_t1p4w")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1468386224]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="IconRect" type="TextureRect" parent="MarginContainer" unique_id=1827533585]
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LevelLabel" type="Label" parent="MarginContainer" unique_id=480970887]
+layout_mode = 2

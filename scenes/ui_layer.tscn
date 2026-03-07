@@ -1,0 +1,157 @@
+[gd_scene format=3 uid="uid://cv5nsnd3sub87"]
+
+[ext_resource type="Script" uid="uid://cgujxum4hfj1i" path="res://scripts/ui_layer.gd" id="1_w83ab"]
+
+[node name="UILayer" type="CanvasLayer" unique_id=1899440785]
+script = ExtResource("1_w83ab")
+
+[node name="MainVBox" type="VBoxContainer" parent="." unique_id=532491090]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopSection" type="HBoxContainer" parent="MainVBox" unique_id=1769003251]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+
+[node name="CombatArea" type="VBoxContainer" parent="MainVBox/TopSection" unique_id=226142914]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="TopHUD" type="MarginContainer" parent="MainVBox/TopSection/CombatArea" unique_id=1648572208]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBox" type="HBoxContainer" parent="MainVBox/TopSection/CombatArea/TopHUD" unique_id=158074447]
+layout_mode = 2
+
+[node name="WaveLabel" type="Label" parent="MainVBox/TopSection/CombatArea/TopHUD/HBox" unique_id=604641918]
+layout_mode = 2
+text = "Wave 1"
+
+[node name="Spacer" type="Control" parent="MainVBox/TopSection/CombatArea/TopHUD/HBox" unique_id=933887520]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="EnemyCountLabel" type="Label" parent="MainVBox/TopSection/CombatArea/TopHUD/HBox" unique_id=81655239]
+layout_mode = 2
+text = "Enemies : 57"
+
+[node name="WorldSpace" type="Control" parent="MainVBox/TopSection/CombatArea" unique_id=787361563]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RightPanel" type="PanelContainer" parent="MainVBox/TopSection" unique_id=1922387390]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MenuTab" type="TabContainer" parent="MainVBox/TopSection/RightPanel" unique_id=1872297268]
+layout_mode = 2
+current_tab = 0
+
+[node name="Skills" type="ScrollContainer" parent="MainVBox/TopSection/RightPanel/MenuTab" unique_id=975611529]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="VBox" type="VBoxContainer" parent="MainVBox/TopSection/RightPanel/MenuTab/Skills" unique_id=344035140]
+layout_mode = 2
+
+[node name="LabelActive" type="Label" parent="MainVBox/TopSection/RightPanel/MenuTab/Skills/VBox" unique_id=1088826975]
+layout_mode = 2
+text = "Active Skills
+"
+
+[node name="ActiveGrid" type="GridContainer" parent="MainVBox/TopSection/RightPanel/MenuTab/Skills/VBox" unique_id=128083529]
+layout_mode = 2
+columns = 4
+
+[node name="LabelPassive" type="Label" parent="MainVBox/TopSection/RightPanel/MenuTab/Skills/VBox" unique_id=1323102003]
+layout_mode = 2
+text = "Passive Skills
+"
+
+[node name="PassiveGrid" type="GridContainer" parent="MainVBox/TopSection/RightPanel/MenuTab/Skills/VBox" unique_id=1636733721]
+layout_mode = 2
+columns = 4
+
+[node name="Equipments" type="ScrollContainer" parent="MainVBox/TopSection/RightPanel/MenuTab" unique_id=1738060055]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="VBox" type="VBoxContainer" parent="MainVBox/TopSection/RightPanel/MenuTab/Equipments" unique_id=1142543957]
+layout_mode = 2
+
+[node name="LabelEquip" type="Label" parent="MainVBox/TopSection/RightPanel/MenuTab/Equipments/VBox" unique_id=640462482]
+layout_mode = 2
+text = "Equipments"
+
+[node name="EquipBox" type="HBoxContainer" parent="MainVBox/TopSection/RightPanel/MenuTab/Equipments/VBox" unique_id=558671867]
+layout_mode = 2
+
+[node name="LabelArtifact" type="Label" parent="MainVBox/TopSection/RightPanel/MenuTab/Equipments/VBox" unique_id=556530986]
+layout_mode = 2
+text = "Artifacts"
+
+[node name="ArtifactBox" type="GridContainer" parent="MainVBox/TopSection/RightPanel/MenuTab/Equipments/VBox" unique_id=149312921]
+layout_mode = 2
+columns = 3
+
+[node name="Shop" type="VBoxContainer" parent="MainVBox/TopSection/RightPanel/MenuTab" unique_id=837500809]
+visible = false
+layout_mode = 2
+alignment = 1
+metadata/_tab_index = 2
+
+[node name="BtnDrawSkill" type="Button" parent="MainVBox/TopSection/RightPanel/MenuTab/Shop" unique_id=1593902517]
+layout_mode = 2
+text = "스킬뽑기
+"
+
+[node name="BtnDrawEquip" type="Button" parent="MainVBox/TopSection/RightPanel/MenuTab/Shop" unique_id=1758770245]
+layout_mode = 2
+text = "장비 뽑"
+
+[node name="BtnSummonBoss" type="Button" parent="MainVBox/TopSection/RightPanel/MenuTab/Shop" unique_id=1934184545]
+layout_mode = 2
+text = "보스 소"
+
+[node name="BottomBar" type="PanelContainer" parent="MainVBox" unique_id=2051755034]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MainVBox/BottomBar" unique_id=804451630]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainVBox/BottomBar/MarginContainer" unique_id=1255973847]
+layout_mode = 2
+alignment = 1
+
+[node name="GoldLabel" type="Label" parent="MainVBox/BottomBar/MarginContainer/HBoxContainer" unique_id=2130401093]
+layout_mode = 2
+
+[node name="Spacer1" type="Control" parent="MainVBox/BottomBar/MarginContainer/HBoxContainer" unique_id=732331318]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ConsumablesBox" type="HBoxContainer" parent="MainVBox/BottomBar/MarginContainer/HBoxContainer" unique_id=1755960288]
+layout_mode = 2
+
+[node name="Spacer2" type="Control" parent="MainVBox/BottomBar/MarginContainer/HBoxContainer" unique_id=957695563]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BtnNextWave" type="Button" parent="MainVBox/BottomBar/MarginContainer/HBoxContainer" unique_id=148770802]
+layout_mode = 2
+text = "다음 웨이브"
