@@ -1,15 +1,15 @@
 extends CanvasLayer
 class_name UILayer
 
-# 우측 상단 상태 HUD 참조 캐싱
-@onready var wave_label: Label = $MainLayout/TopSection/RightPanel/StatusHUD/VBox/HBox/WaveLabel
-@onready var enemy_count_label: Label = $MainLayout/TopSection/RightPanel/StatusHUD/VBox/HBox/EnemyCountLabel
-@onready var gold_label: Label = $MainLayout/TopSection/RightPanel/StatusHUD/VBox/GoldLabel
+# 우측 상단 상태 HUD 참조 캐싱 (RightPanel 뒤에 VBox/ 추가됨)
+@onready var wave_label: Label = $MainLayout/TopSection/RightPanel/VBox/StatusHUD/VBox/HBox/WaveLabel
+@onready var enemy_count_label: Label = $MainLayout/TopSection/RightPanel/VBox/StatusHUD/VBox/HBox/EnemyCountLabel
+@onready var gold_label: Label = $MainLayout/TopSection/RightPanel/VBox/StatusHUD/VBox/GoldLabel
 
-# 우측 정보 탭 컨테이너 참조 캐싱 (스킬 및 아티팩트)
-@onready var active_grid: GridContainer = $MainLayout/TopSection/RightPanel/InfoTabs/Skills/VBox/ActiveGrid
-@onready var passive_grid: GridContainer = $MainLayout/TopSection/RightPanel/InfoTabs/Skills/VBox/PassiveGrid
-@onready var artifact_box: GridContainer = $MainLayout/TopSection/RightPanel/InfoTabs/Artifacts/VBox/ArtifactBox
+# 우측 정보 탭 컨테이너 참조 캐싱 (RightPanel 뒤에 VBox/ 추가됨)
+@onready var active_grid: GridContainer = $MainLayout/TopSection/RightPanel/VBox/InfoTabs/Skills/VBox/ActiveGrid
+@onready var passive_grid: GridContainer = $MainLayout/TopSection/RightPanel/VBox/InfoTabs/Skills/VBox/PassiveGrid
+@onready var artifact_box: GridContainer = $MainLayout/TopSection/RightPanel/VBox/InfoTabs/Artifacts/VBox/ArtifactBox
 
 # 하단 바 조작부 및 슬롯 컨테이너 참조 캐싱
 @onready var btn_draw_skill: Button = $MainLayout/BottomBar/MarginContainer/HBox/ActionButtons/BtnDrawSkill

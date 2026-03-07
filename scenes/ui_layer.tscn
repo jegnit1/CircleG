@@ -27,72 +27,75 @@ size_flags_stretch_ratio = 2.0
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="RightPanel" type="VBoxContainer" parent="MainLayout/TopSection" unique_id=1754664189]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="StatusHUD" type="PanelContainer" parent="MainLayout/TopSection/RightPanel" unique_id=1492369671]
-visible = false
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="VBox" type="VBoxContainer" parent="MainLayout/TopSection/RightPanel/StatusHUD" unique_id=930848797]
+[node name="RightPanel" type="PanelContainer" parent="MainLayout/TopSection" unique_id=1901525359]
 layout_mode = 2
 
-[node name="HBox" type="HBoxContainer" parent="MainLayout/TopSection/RightPanel/StatusHUD/VBox" unique_id=2129473328]
+[node name="VBox" type="VBoxContainer" parent="MainLayout/TopSection/RightPanel" unique_id=1083120110]
 layout_mode = 2
 
-[node name="WaveLabel" type="Label" parent="MainLayout/TopSection/RightPanel/StatusHUD/VBox/HBox" unique_id=940725557]
+[node name="StatusHUD" type="PanelContainer" parent="MainLayout/TopSection/RightPanel/VBox" unique_id=1492369671]
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="MainLayout/TopSection/RightPanel/VBox/StatusHUD" unique_id=930848797]
+layout_mode = 2
+
+[node name="HBox" type="HBoxContainer" parent="MainLayout/TopSection/RightPanel/VBox/StatusHUD/VBox" unique_id=2129473328]
+layout_mode = 2
+
+[node name="WaveLabel" type="Label" parent="MainLayout/TopSection/RightPanel/VBox/StatusHUD/VBox/HBox" unique_id=940725557]
 layout_mode = 2
 text = "Wave 1"
 
-[node name="EnemyCountLabel" type="Label" parent="MainLayout/TopSection/RightPanel/StatusHUD/VBox/HBox" unique_id=353153981]
+[node name="EnemyCountLabel" type="Label" parent="MainLayout/TopSection/RightPanel/VBox/StatusHUD/VBox/HBox" unique_id=353153981]
 layout_mode = 2
 text = "Enemy : 80"
 
-[node name="GoldLabel" type="Label" parent="MainLayout/TopSection/RightPanel/StatusHUD/VBox" unique_id=876866328]
+[node name="GoldLabel" type="Label" parent="MainLayout/TopSection/RightPanel/VBox/StatusHUD/VBox" unique_id=876866328]
 layout_mode = 2
 
-[node name="InfoTabs" type="TabContainer" parent="MainLayout/TopSection/RightPanel" unique_id=1872297268]
+[node name="InfoTabs" type="TabContainer" parent="MainLayout/TopSection/RightPanel/VBox" unique_id=1872297268]
 layout_mode = 2
 size_flags_vertical = 3
 current_tab = 0
 
-[node name="Skills" type="ScrollContainer" parent="MainLayout/TopSection/RightPanel/InfoTabs" unique_id=975611529]
+[node name="Skills" type="ScrollContainer" parent="MainLayout/TopSection/RightPanel/VBox/InfoTabs" unique_id=975611529]
 layout_mode = 2
+horizontal_scroll_mode = 0
 metadata/_tab_index = 0
 
-[node name="VBox" type="VBoxContainer" parent="MainLayout/TopSection/RightPanel/InfoTabs/Skills" unique_id=344035140]
+[node name="VBox" type="VBoxContainer" parent="MainLayout/TopSection/RightPanel/VBox/InfoTabs/Skills" unique_id=344035140]
 layout_mode = 2
 
-[node name="LabelActive" type="Label" parent="MainLayout/TopSection/RightPanel/InfoTabs/Skills/VBox" unique_id=1088826975]
+[node name="LabelActive" type="Label" parent="MainLayout/TopSection/RightPanel/VBox/InfoTabs/Skills/VBox" unique_id=1088826975]
 layout_mode = 2
 text = "Active Skills
 "
 
-[node name="ActiveGrid" type="GridContainer" parent="MainLayout/TopSection/RightPanel/InfoTabs/Skills/VBox" unique_id=128083529]
+[node name="ActiveGrid" type="GridContainer" parent="MainLayout/TopSection/RightPanel/VBox/InfoTabs/Skills/VBox" unique_id=128083529]
 layout_mode = 2
-columns = 4
+columns = 5
 
-[node name="LabelPassive" type="Label" parent="MainLayout/TopSection/RightPanel/InfoTabs/Skills/VBox" unique_id=1323102003]
+[node name="LabelPassive" type="Label" parent="MainLayout/TopSection/RightPanel/VBox/InfoTabs/Skills/VBox" unique_id=1323102003]
 layout_mode = 2
 text = "Passive Skills
 "
 
-[node name="PassiveGrid" type="GridContainer" parent="MainLayout/TopSection/RightPanel/InfoTabs/Skills/VBox" unique_id=1636733721]
+[node name="PassiveGrid" type="GridContainer" parent="MainLayout/TopSection/RightPanel/VBox/InfoTabs/Skills/VBox" unique_id=1636733721]
 layout_mode = 2
-columns = 4
+columns = 5
 
-[node name="Artifacts" type="ScrollContainer" parent="MainLayout/TopSection/RightPanel/InfoTabs" unique_id=521325901]
+[node name="Artifacts" type="ScrollContainer" parent="MainLayout/TopSection/RightPanel/VBox/InfoTabs" unique_id=521325901]
 visible = false
 layout_mode = 2
+horizontal_scroll_mode = 0
 metadata/_tab_index = 1
 
-[node name="VBox" type="VBoxContainer" parent="MainLayout/TopSection/RightPanel/InfoTabs/Artifacts" unique_id=1914676956]
+[node name="VBox" type="VBoxContainer" parent="MainLayout/TopSection/RightPanel/VBox/InfoTabs/Artifacts" unique_id=1914676956]
 layout_mode = 2
 
-[node name="ArtifactBox" type="GridContainer" parent="MainLayout/TopSection/RightPanel/InfoTabs/Artifacts/VBox" unique_id=370014674]
+[node name="ArtifactBox" type="GridContainer" parent="MainLayout/TopSection/RightPanel/VBox/InfoTabs/Artifacts/VBox" unique_id=370014674]
 layout_mode = 2
+columns = 5
 
 [node name="BottomBar" type="PanelContainer" parent="MainLayout" unique_id=2051755034]
 custom_minimum_size = Vector2(0, 144)
@@ -115,12 +118,15 @@ layout_mode = 2
 
 [node name="BtnDrawSkill" type="Button" parent="MainLayout/BottomBar/MarginContainer/HBox/ActionButtons" unique_id=1127126134]
 layout_mode = 2
+text = "스킬 뽑기"
 
 [node name="BtnDrawEquip" type="Button" parent="MainLayout/BottomBar/MarginContainer/HBox/ActionButtons" unique_id=1658975911]
 layout_mode = 2
+text = "장비 뽑기"
 
 [node name="BtnSummonBoss" type="Button" parent="MainLayout/BottomBar/MarginContainer/HBox/ActionButtons" unique_id=1710966095]
 layout_mode = 2
+text = "보스 소환"
 
 [node name="VSeparator" type="VSeparator" parent="MainLayout/BottomBar/MarginContainer/HBox" unique_id=2122896982]
 layout_mode = 2
@@ -137,3 +143,5 @@ layout_mode = 2
 
 [node name="BtnNextWave" type="Button" parent="MainLayout/BottomBar/MarginContainer/HBox" unique_id=611322835]
 layout_mode = 2
+size_flags_vertical = 4
+text = "Next Wave"
