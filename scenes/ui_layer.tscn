@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://cv5nsnd3sub87"]
 
 [ext_resource type="Script" uid="uid://cgujxum4hfj1i" path="res://scripts/ui_layer.gd" id="1_w83ab"]
-[ext_resource type="Script" uid="uid://c73aokgfu4dhv" path="res://scripts/ui_slot.gd" id="2_bkwom"]
 
 [node name="UILayer" type="CanvasLayer" unique_id=1899440785]
 script = ExtResource("1_w83ab")
@@ -12,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 0
 
 [node name="TopSection" type="HBoxContainer" parent="MainLayout" unique_id=1769003251]
 layout_mode = 2
@@ -27,13 +27,14 @@ size_flags_stretch_ratio = 2.0
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="RightPanel" type="PanelContainer" parent="MainLayout/TopSection" unique_id=1922387390]
+[node name="RightPanel" type="VBoxContainer" parent="MainLayout/TopSection" unique_id=1754664189]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="StatusHUD" type="MarginContainer" parent="MainLayout/TopSection/RightPanel" unique_id=1910122093]
+[node name="StatusHUD" type="PanelContainer" parent="MainLayout/TopSection/RightPanel" unique_id=1492369671]
 visible = false
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="VBox" type="VBoxContainer" parent="MainLayout/TopSection/RightPanel/StatusHUD" unique_id=930848797]
 layout_mode = 2
@@ -43,15 +44,18 @@ layout_mode = 2
 
 [node name="WaveLabel" type="Label" parent="MainLayout/TopSection/RightPanel/StatusHUD/VBox/HBox" unique_id=940725557]
 layout_mode = 2
+text = "Wave 1"
 
 [node name="EnemyCountLabel" type="Label" parent="MainLayout/TopSection/RightPanel/StatusHUD/VBox/HBox" unique_id=353153981]
 layout_mode = 2
+text = "Enemy : 80"
 
 [node name="GoldLabel" type="Label" parent="MainLayout/TopSection/RightPanel/StatusHUD/VBox" unique_id=876866328]
 layout_mode = 2
 
 [node name="InfoTabs" type="TabContainer" parent="MainLayout/TopSection/RightPanel" unique_id=1872297268]
 layout_mode = 2
+size_flags_vertical = 3
 current_tab = 0
 
 [node name="Skills" type="ScrollContainer" parent="MainLayout/TopSection/RightPanel/InfoTabs" unique_id=975611529]
@@ -84,10 +88,10 @@ visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainLayout/TopSection/RightPanel/InfoTabs/Artifacts" unique_id=1914676956]
+[node name="VBox" type="VBoxContainer" parent="MainLayout/TopSection/RightPanel/InfoTabs/Artifacts" unique_id=1914676956]
 layout_mode = 2
 
-[node name="ArtifactBox" type="GridContainer" parent="MainLayout/TopSection/RightPanel/InfoTabs/Artifacts/VBoxContainer" unique_id=370014674]
+[node name="ArtifactBox" type="GridContainer" parent="MainLayout/TopSection/RightPanel/InfoTabs/Artifacts/VBox" unique_id=370014674]
 layout_mode = 2
 
 [node name="BottomBar" type="PanelContainer" parent="MainLayout" unique_id=2051755034]
@@ -125,36 +129,11 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="WeaponSlot" type="PanelContainer" parent="MainLayout/BottomBar/MarginContainer/HBox/Equipments" unique_id=126305232]
-layout_mode = 2
-script = ExtResource("2_bkwom")
-metadata/_custom_type_script = "uid://c73aokgfu4dhv"
-
-[node name="ArmorSlot" type="PanelContainer" parent="MainLayout/BottomBar/MarginContainer/HBox/Equipments" unique_id=953823989]
-layout_mode = 2
-script = ExtResource("2_bkwom")
-metadata/_custom_type_script = "uid://c73aokgfu4dhv"
-
-[node name="AccessorySlot" type="PanelContainer" parent="MainLayout/BottomBar/MarginContainer/HBox/Equipments" unique_id=1457074578]
-layout_mode = 2
-script = ExtResource("2_bkwom")
-metadata/_custom_type_script = "uid://c73aokgfu4dhv"
-
 [node name="VSeparator2" type="VSeparator" parent="MainLayout/BottomBar/MarginContainer/HBox" unique_id=598561892]
 layout_mode = 2
 
-[node name="Cosumables" type="HBoxContainer" parent="MainLayout/BottomBar/MarginContainer/HBox" unique_id=1885026244]
+[node name="Consumables" type="HBoxContainer" parent="MainLayout/BottomBar/MarginContainer/HBox" unique_id=1885026244]
 layout_mode = 2
-
-[node name="CosumableSlot1" type="PanelContainer" parent="MainLayout/BottomBar/MarginContainer/HBox/Cosumables" unique_id=2087912230]
-layout_mode = 2
-script = ExtResource("2_bkwom")
-metadata/_custom_type_script = "uid://c73aokgfu4dhv"
-
-[node name="CosumableSlot2" type="PanelContainer" parent="MainLayout/BottomBar/MarginContainer/HBox/Cosumables" unique_id=1492404311]
-layout_mode = 2
-script = ExtResource("2_bkwom")
-metadata/_custom_type_script = "uid://c73aokgfu4dhv"
 
 [node name="BtnNextWave" type="Button" parent="MainLayout/BottomBar/MarginContainer/HBox" unique_id=611322835]
 layout_mode = 2
