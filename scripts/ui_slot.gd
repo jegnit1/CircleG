@@ -24,14 +24,19 @@ func _clear_slot() -> void:
 	level_label.text = ""
 
 # 외부 데이터 기반 렌더링 갱신
-func update_visuals(data: Dictionary) -> void:
-	if data.is_empty():
+func update_visuals(data: Variant) -> void:
+	# 데이터가 없거나 Null인 경우 초기화
+	if data == null:
 		_clear_slot()
 		return
 		
-	var icon_path: String = data.get("icon_path", "")
-	if icon_path != "":
-		icon_rect.texture = load(icon_path)
+	# 덕 타이핑(Duck Typing)을 활용한 안전한 텍스처 바인딩
+	var icon_tex: Texture2D = data.get("icon") if typeof(data) == TYPE_OBJECT else null
+	if icon_tex != null:
+		icon_rect.texture = icon_tex
+	else:
+		icon_rect.texture = null
 		
-	var level: int = data.get("level", 1)
+	# 레벨 표시 (현재 아티팩트에는 없으나 스킬 등 확장을 고려한 처리)
+	var level: int = data.get("level") if (typeof(data) == TYPE_OBJECT and "level" in data) else 1
 	level_label.text = "Lv." + str(level) if level > 1 else ""

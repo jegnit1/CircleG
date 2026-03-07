@@ -53,47 +53,40 @@ text = "Enemy : 80"
 [node name="GoldLabel" type="Label" parent="MainLayout/TopSection/RightPanel/VBox/StatusHUD/VBox" unique_id=876866328]
 layout_mode = 2
 
-[node name="InfoTabs" type="TabContainer" parent="MainLayout/TopSection/RightPanel/VBox" unique_id=1872297268]
+[node name="InfoScroll" type="ScrollContainer" parent="MainLayout/TopSection/RightPanel/VBox" unique_id=1929411918]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 0
-
-[node name="Skills" type="ScrollContainer" parent="MainLayout/TopSection/RightPanel/VBox/InfoTabs" unique_id=975611529]
-layout_mode = 2
 horizontal_scroll_mode = 0
-metadata/_tab_index = 0
 
-[node name="VBox" type="VBoxContainer" parent="MainLayout/TopSection/RightPanel/VBox/InfoTabs/Skills" unique_id=344035140]
+[node name="VBox" type="VBoxContainer" parent="MainLayout/TopSection/RightPanel/VBox/InfoScroll" unique_id=344035140]
 layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
 
-[node name="LabelActive" type="Label" parent="MainLayout/TopSection/RightPanel/VBox/InfoTabs/Skills/VBox" unique_id=1088826975]
+[node name="Label_Active" type="Label" parent="MainLayout/TopSection/RightPanel/VBox/InfoScroll/VBox" unique_id=1088826975]
 layout_mode = 2
-text = "Active Skills
-"
+size_flags_vertical = 1
+text = "Active Skills"
 
-[node name="ActiveGrid" type="GridContainer" parent="MainLayout/TopSection/RightPanel/VBox/InfoTabs/Skills/VBox" unique_id=128083529]
+[node name="ActiveGrid" type="GridContainer" parent="MainLayout/TopSection/RightPanel/VBox/InfoScroll/VBox" unique_id=128083529]
 layout_mode = 2
 columns = 5
 
-[node name="LabelPassive" type="Label" parent="MainLayout/TopSection/RightPanel/VBox/InfoTabs/Skills/VBox" unique_id=1323102003]
+[node name="Label_Passive" type="Label" parent="MainLayout/TopSection/RightPanel/VBox/InfoScroll/VBox" unique_id=1323102003]
 layout_mode = 2
-text = "Passive Skills
-"
+size_flags_vertical = 1
+text = "Passive Skills"
 
-[node name="PassiveGrid" type="GridContainer" parent="MainLayout/TopSection/RightPanel/VBox/InfoTabs/Skills/VBox" unique_id=1636733721]
+[node name="PassiveGrid" type="GridContainer" parent="MainLayout/TopSection/RightPanel/VBox/InfoScroll/VBox" unique_id=1636733721]
 layout_mode = 2
 columns = 5
 
-[node name="Artifacts" type="ScrollContainer" parent="MainLayout/TopSection/RightPanel/VBox/InfoTabs" unique_id=521325901]
-visible = false
+[node name="Label_Artifact" type="Label" parent="MainLayout/TopSection/RightPanel/VBox/InfoScroll/VBox" unique_id=1219820926]
 layout_mode = 2
-horizontal_scroll_mode = 0
-metadata/_tab_index = 1
+size_flags_vertical = 1
+text = "Arifacts"
 
-[node name="VBox" type="VBoxContainer" parent="MainLayout/TopSection/RightPanel/VBox/InfoTabs/Artifacts" unique_id=1914676956]
-layout_mode = 2
-
-[node name="ArtifactBox" type="GridContainer" parent="MainLayout/TopSection/RightPanel/VBox/InfoTabs/Artifacts/VBox" unique_id=370014674]
+[node name="ArtifactBox" type="GridContainer" parent="MainLayout/TopSection/RightPanel/VBox/InfoScroll/VBox" unique_id=370014674]
 layout_mode = 2
 columns = 5
 

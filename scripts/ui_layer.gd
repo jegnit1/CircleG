@@ -6,10 +6,10 @@ class_name UILayer
 @onready var enemy_count_label: Label = $MainLayout/TopSection/RightPanel/VBox/StatusHUD/VBox/HBox/EnemyCountLabel
 @onready var gold_label: Label = $MainLayout/TopSection/RightPanel/VBox/StatusHUD/VBox/GoldLabel
 
-# 우측 정보 탭 컨테이너 참조 캐싱 (RightPanel 뒤에 VBox/ 추가됨)
-@onready var active_grid: GridContainer = $MainLayout/TopSection/RightPanel/VBox/InfoTabs/Skills/VBox/ActiveGrid
-@onready var passive_grid: GridContainer = $MainLayout/TopSection/RightPanel/VBox/InfoTabs/Skills/VBox/PassiveGrid
-@onready var artifact_box: GridContainer = $MainLayout/TopSection/RightPanel/VBox/InfoTabs/Artifacts/VBox/ArtifactBox
+# 우측 정보 패널 (탭 제거 및 단일 뷰 통합 반영)
+@onready var active_grid: GridContainer = $MainLayout/TopSection/RightPanel/VBox/InfoScroll/VBox/ActiveGrid
+@onready var passive_grid: GridContainer = $MainLayout/TopSection/RightPanel/VBox/InfoScroll/VBox/PassiveGrid
+@onready var artifact_box: GridContainer = $MainLayout/TopSection/RightPanel/VBox/InfoScroll/VBox/ArtifactBox
 
 # 하단 바 조작부 및 슬롯 컨테이너 참조 캐싱
 @onready var btn_draw_skill: Button = $MainLayout/BottomBar/MarginContainer/HBox/ActionButtons/BtnDrawSkill
@@ -42,6 +42,11 @@ func _create_slots(container: Control, slot_type: String, count: int) -> void:
 		var slot_instance: UISlot = SLOT_SCENE.instantiate() as UISlot
 		container.add_child(slot_instance)
 		slot_instance.initialize(slot_type, i)
+		
+		# 연동 테스트: 아티팩트 첫 번째 칸에 생성한 리소스 주입
+		if slot_type == "artifact" and i == 0:
+			var test_art: Resource = DataManager.get_artifact("ART_RICH")
+			slot_instance.update_visuals(test_art)
 
 # 전역 상태 신호 구독
 func _connect_global_signals() -> void:

@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://cy45ho53ay2ko"
+
+[deps]
+
+files=["res://data/csv/artifacts.MIN.translation", "res://data/csv/artifacts.MAX.translation", "res://data/csv/artifacts.NAME_KR.translation", "res://data/csv/artifacts.NAME_EN.translation", "res://data/csv/artifacts.LOGIC.translation"]
+
+source_file="res://data/csv/artifacts.csv"
+dest_files=["res://data/csv/artifacts.MIN.translation", "res://data/csv/artifacts.MAX.translation", "res://data/csv/artifacts.NAME_KR.translation", "res://data/csv/artifacts.NAME_EN.translation", "res://data/csv/artifacts.LOGIC.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true
