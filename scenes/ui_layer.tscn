@@ -65,42 +65,66 @@ text = "Enemy : 80"
 [node name="GoldLabel" type="Label" parent="MainLayout/TopSection/RightPanel/VBox/StatusHUD/VBox" unique_id=876866328]
 layout_mode = 2
 
-[node name="InfoScroll" type="ScrollContainer" parent="MainLayout/TopSection/RightPanel/VBox" unique_id=1929411918]
+[node name="TabContainer" type="TabContainer" parent="MainLayout/TopSection/RightPanel/VBox" unique_id=1059160745]
+custom_minimum_size = Vector2(338, 0)
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 0
+
+[node name="Skills" type="ScrollContainer" parent="MainLayout/TopSection/RightPanel/VBox/TabContainer" unique_id=1929411918]
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
+metadata/_tab_index = 0
 
-[node name="VBox" type="VBoxContainer" parent="MainLayout/TopSection/RightPanel/VBox/InfoScroll" unique_id=344035140]
+[node name="VBox" type="VBoxContainer" parent="MainLayout/TopSection/RightPanel/VBox/TabContainer/Skills" unique_id=344035140]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 8
 
-[node name="Label_Active" type="Label" parent="MainLayout/TopSection/RightPanel/VBox/InfoScroll/VBox" unique_id=1088826975]
+[node name="Label_Active" type="Label" parent="MainLayout/TopSection/RightPanel/VBox/TabContainer/Skills/VBox" unique_id=1088826975]
 layout_mode = 2
 size_flags_vertical = 1
 text = "Active Skills"
 
-[node name="ActiveGrid" type="GridContainer" parent="MainLayout/TopSection/RightPanel/VBox/InfoScroll/VBox" unique_id=128083529]
+[node name="ActiveGrid" type="GridContainer" parent="MainLayout/TopSection/RightPanel/VBox/TabContainer/Skills/VBox" unique_id=128083529]
 layout_mode = 2
 columns = 5
 
-[node name="Label_Passive" type="Label" parent="MainLayout/TopSection/RightPanel/VBox/InfoScroll/VBox" unique_id=1323102003]
+[node name="Label_Passive" type="Label" parent="MainLayout/TopSection/RightPanel/VBox/TabContainer/Skills/VBox" unique_id=1323102003]
 layout_mode = 2
 size_flags_vertical = 1
 text = "Passive Skills"
 
-[node name="PassiveGrid" type="GridContainer" parent="MainLayout/TopSection/RightPanel/VBox/InfoScroll/VBox" unique_id=1636733721]
+[node name="PassiveGrid" type="GridContainer" parent="MainLayout/TopSection/RightPanel/VBox/TabContainer/Skills/VBox" unique_id=1636733721]
 layout_mode = 2
 columns = 5
 
-[node name="Label_Artifact" type="Label" parent="MainLayout/TopSection/RightPanel/VBox/InfoScroll/VBox" unique_id=1219820926]
+[node name="Label_Artifact" type="Label" parent="MainLayout/TopSection/RightPanel/VBox/TabContainer/Skills/VBox" unique_id=1219820926]
 layout_mode = 2
 size_flags_vertical = 1
 text = "Arifacts"
 
-[node name="ArtifactBox" type="GridContainer" parent="MainLayout/TopSection/RightPanel/VBox/InfoScroll/VBox" unique_id=370014674]
+[node name="ArtifactBox" type="GridContainer" parent="MainLayout/TopSection/RightPanel/VBox/TabContainer/Skills/VBox" unique_id=370014674]
 layout_mode = 2
 columns = 5
+
+[node name="Stats" type="ScrollContainer" parent="MainLayout/TopSection/RightPanel/VBox/TabContainer" unique_id=188007363]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainLayout/TopSection/RightPanel/VBox/TabContainer/Stats" unique_id=594332345]
+layout_mode = 2
+
+[node name="LblDamage" type="Label" parent="MainLayout/TopSection/RightPanel/VBox/TabContainer/Stats/VBoxContainer" unique_id=1348116205]
+layout_mode = 2
+
+[node name="LblCooldown" type="Label" parent="MainLayout/TopSection/RightPanel/VBox/TabContainer/Stats/VBoxContainer" unique_id=1862117346]
+layout_mode = 2
+
+[node name="LblGold" type="Label" parent="MainLayout/TopSection/RightPanel/VBox/TabContainer/Stats/VBoxContainer" unique_id=1270055582]
+layout_mode = 2
 
 [node name="BottomBar" type="PanelContainer" parent="MainLayout" unique_id=2051755034]
 custom_minimum_size = Vector2(0, 144)

@@ -6,10 +6,16 @@ class_name UILayer
 @onready var enemy_count_label: Label = $MainLayout/TopSection/RightPanel/VBox/StatusHUD/VBox/HBox/EnemyCountLabel
 @onready var gold_label: Label = $MainLayout/TopSection/RightPanel/VBox/StatusHUD/VBox/GoldLabel
 
+
+
+
 # 우측 정보 패널 (탭 제거 및 단일 뷰 통합 반영)
-@onready var active_grid: GridContainer = $MainLayout/TopSection/RightPanel/VBox/InfoScroll/VBox/ActiveGrid
-@onready var passive_grid: GridContainer = $MainLayout/TopSection/RightPanel/VBox/InfoScroll/VBox/PassiveGrid
-@onready var artifact_box: GridContainer = $MainLayout/TopSection/RightPanel/VBox/InfoScroll/VBox/ArtifactBox
+@onready var active_grid: GridContainer = $MainLayout/TopSection/RightPanel/VBox/TabContainer/Skills/VBox/ActiveGrid
+@onready var passive_grid: GridContainer = $MainLayout/TopSection/RightPanel/VBox/TabContainer/Skills/VBox/PassiveGrid
+@onready var artifact_box: GridContainer = $MainLayout/TopSection/RightPanel/VBox/TabContainer/Skills/VBox/ArtifactBox
+@onready var lbl_damage: Label = $RightPanel/VBoxContainer/TabContainer/Stats/VBoxContainer/LblDamage
+@onready var lbl_cooldown: Label = $RightPanel/VBoxContainer/TabContainer/Stats/VBoxContainer/LblCooldown
+@onready var lbl_gold: Label = $RightPanel/VBoxContainer/TabContainer/Stats/VBoxContainer/LblGold
 
 # 하단 바 조작부 및 슬롯 컨테이너 참조 캐싱
 @onready var btn_draw_skill: Button = $MainLayout/BottomBar/MarginContainer/HBox/ActionButtons/BtnDrawSkill
@@ -34,6 +40,13 @@ func _ready() -> void:
 	_init_all_slots()
 	_connect_global_signals()
 	_connect_buttons()
+	
+func update_stats_ui() -> void:
+	var stats = DataManager.player_stats	
+	lbl_damage.text = "⚔️ 기본 공격력: " + str(stats["base_damage"])	
+	var cd_percent = int(stats["cooldown_speed"] * 100)
+	lbl_cooldown.text = "⏳ 쿨타임 가속: " + str(cd_percent) + "%"	
+	lbl_gold.text = "💰 골드 획득 보너스: +" + str(stats["gold_bonus"])
 
 # 규격에 따른 슬롯 동적 생성
 func _init_all_slots() -> void:
