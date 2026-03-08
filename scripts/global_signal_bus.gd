@@ -11,3 +11,9 @@ signal draw_popup_requested(draw_type: String)
 # 툴팁 관련 신호
 signal tooltip_requested(data: Variant) # 툴팁 표시 요청 (데이터 전달)
 signal tooltip_hidden()                 # 툴팁 숨김 요청
+
+# 스킬 장착
+signal skill_equipped(skill_data: SkillData)
+
+# 적이 죽었을 때 떨구는 골드량을 담아서 보낼 신호
+signal enemy_killed(gold_reward: int)

@@ -21,10 +21,18 @@ var current_speed: float = 1.0
 
 func _ready() -> void:
 	_start_stage(current_stage)
+	
+var last_active_creeps: int = -1 # 이전 프레임의 크립 수를 기억할 변수
 
 func _process(delta: float) -> void:
 	# 1. 패배 조건 (100마리 초과) 검사
 	var active_creeps: int = get_tree().get_nodes_in_group("creeps").size()
+	
+	# 실시간 크립 수를 UI로 보냄
+	if active_creeps != last_active_creeps:
+		GlobalSignalBus.creep_count_updated.emit(active_creeps, max_creeps_allowed)
+		last_active_creeps = active_creeps # 기억해둠
+	
 	if active_creeps > max_creeps_allowed:
 		_game_over()
 		return
@@ -44,6 +52,9 @@ func _process(delta: float) -> void:
 			spawn_timer = spawn_interval
 
 func _start_stage(stage: int) -> void:
+	# 변경된 웨이브(라운드) 정보를 UI로 보냄
+	GlobalSignalBus.round_updated.emit(stage)
+	
 	var stage_data: Dictionary = DataManager.get_stage_data(stage)
 	
 	# CSV에 더 이상 데이터가 없으면 (100라운드를 넘기면)
@@ -84,7 +95,7 @@ func _spawn_creep() -> void:
 	# 12시 스폰 기준점 (타워 위치)
 	creep.center_position = center_tower.global_position
 	# 적들이 완벽히 겹치지 않도록 궤도 반경을 약간 랜덤으로 줍니다 (285 ~ 315)
-	creep.radius = 300.0 + randf_range(-15.0, 15.0)
+	creep.radius = 250
 	
 	# CSV 기반 스탯 적용! (라운드가 오를수록 체력과 속도가 적용됨)
 	creep.max_hp = current_hp

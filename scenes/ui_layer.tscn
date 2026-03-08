@@ -2,6 +2,18 @@
 
 [ext_resource type="Script" uid="uid://cgujxum4hfj1i" path="res://scripts/ui_layer.gd" id="1_w83ab"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w83ab"]
+bg_color = Color(0.52700764, 0.5445914, 0.9807424, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 2
+
 [node name="UILayer" type="CanvasLayer" unique_id=1899440785]
 script = ExtResource("1_w83ab")
 
@@ -138,3 +150,77 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 4
 text = "Next Wave"
+
+[node name="SkillSelectPanel" type="Panel" parent="." unique_id=371262991]
+visible = false
+offset_left = 309.0
+offset_top = 187.0
+offset_right = 775.0
+offset_bottom = 373.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SkillSelectPanel" unique_id=1077613385]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Card1" type="Button" parent="SkillSelectPanel/HBoxContainer" unique_id=1351407027]
+custom_minimum_size = Vector2(250, 350)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_w83ab")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SkillSelectPanel/HBoxContainer/Card1" unique_id=2111984962]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="SkillSelectPanel/HBoxContainer/Card1/VBoxContainer" unique_id=878717101]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="SkillSelectPanel/HBoxContainer/Card1/VBoxContainer" unique_id=2020652218]
+layout_mode = 2
+
+[node name="DescLabel" type="Label" parent="SkillSelectPanel/HBoxContainer/Card1/VBoxContainer" unique_id=894851635]
+layout_mode = 2
+
+[node name="Card2" type="Button" parent="SkillSelectPanel/HBoxContainer" unique_id=892706916]
+custom_minimum_size = Vector2(250, 350)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_w83ab")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SkillSelectPanel/HBoxContainer/Card2" unique_id=1830596119]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="SkillSelectPanel/HBoxContainer/Card2/VBoxContainer" unique_id=262701562]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="SkillSelectPanel/HBoxContainer/Card2/VBoxContainer" unique_id=325668611]
+layout_mode = 2
+
+[node name="DescLabel" type="Label" parent="SkillSelectPanel/HBoxContainer/Card2/VBoxContainer" unique_id=905102407]
+layout_mode = 2
+
+[node name="Card3" type="Button" parent="SkillSelectPanel/HBoxContainer" unique_id=785318130]
+custom_minimum_size = Vector2(250, 350)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_w83ab")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SkillSelectPanel/HBoxContainer/Card3" unique_id=1433796465]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="SkillSelectPanel/HBoxContainer/Card3/VBoxContainer" unique_id=952263456]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="SkillSelectPanel/HBoxContainer/Card3/VBoxContainer" unique_id=1786231111]
+layout_mode = 2
+
+[node name="DescLabel" type="Label" parent="SkillSelectPanel/HBoxContainer/Card3/VBoxContainer" unique_id=1226031344]
+layout_mode = 2
+
+[connection signal="pressed" from="MainLayout/BottomBar/MarginContainer/HBox/ActionButtons/BtnDrawSkill" to="." method="_on_btn_draw_skill_pressed"]
