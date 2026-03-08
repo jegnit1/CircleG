@@ -17,3 +17,5 @@ signal skill_equipped(skill_data: SkillData)
 
 # 적이 죽었을 때 떨구는 골드량을 담아서 보낼 신호
 signal enemy_killed(gold_reward: int)
+
+signal player_stats_changed # 스탯이 바뀌었을 때 알리는 신호

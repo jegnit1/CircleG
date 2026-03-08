@@ -7,15 +7,13 @@ class_name UILayer
 @onready var gold_label: Label = $MainLayout/TopSection/RightPanel/VBox/StatusHUD/VBox/GoldLabel
 
 
-
-
 # 우측 정보 패널 (탭 제거 및 단일 뷰 통합 반영)
 @onready var active_grid: GridContainer = $MainLayout/TopSection/RightPanel/VBox/TabContainer/Skills/VBox/ActiveGrid
 @onready var passive_grid: GridContainer = $MainLayout/TopSection/RightPanel/VBox/TabContainer/Skills/VBox/PassiveGrid
 @onready var artifact_box: GridContainer = $MainLayout/TopSection/RightPanel/VBox/TabContainer/Skills/VBox/ArtifactBox
-@onready var lbl_damage: Label = $RightPanel/VBoxContainer/TabContainer/Stats/VBoxContainer/LblDamage
-@onready var lbl_cooldown: Label = $RightPanel/VBoxContainer/TabContainer/Stats/VBoxContainer/LblCooldown
-@onready var lbl_gold: Label = $RightPanel/VBoxContainer/TabContainer/Stats/VBoxContainer/LblGold
+@onready var lbl_damage = %LblDamage
+@onready var lbl_cooldown = %LblCooldown
+@onready var lbl_gold = %LblGold
 
 # 하단 바 조작부 및 슬롯 컨테이너 참조 캐싱
 @onready var btn_draw_skill: Button = $MainLayout/BottomBar/MarginContainer/HBox/ActionButtons/BtnDrawSkill
@@ -40,13 +38,26 @@ func _ready() -> void:
 	_init_all_slots()
 	_connect_global_signals()
 	_connect_buttons()
+	# 🌟 2. 게임이 시작될 때 스탯 UI를 한 번 그려줍니다.
+	update_stats_ui()
+	
+	# 🌟 3. 나중에 스탯이 변했다는 신호를 받으면, UI를 다시 그리도록 연결해둡니다.
+	# GlobalSignalBus.player_stats_changed.connect(update_stats_ui)
 	
 func update_stats_ui() -> void:
-	var stats = DataManager.player_stats	
-	lbl_damage.text = "⚔️ 기본 공격력: " + str(stats["base_damage"])	
+	# DataManager에서 스탯 딕셔너리를 통째로 가져옵니다.
+	var stats = DataManager.player_stats
+	
+	# 라벨의 text 속성에 예쁘게 글자를 조립해서 넣습니다.
+	lbl_damage.text = "⚔️ 기본 공격력: " + str(stats["base_damage"])
+	
+	# 쿨타임이 1.2 라면 120%로 보여주기 위한 계산
 	var cd_percent = int(stats["cooldown_speed"] * 100)
-	lbl_cooldown.text = "⏳ 쿨타임 가속: " + str(cd_percent) + "%"	
-	lbl_gold.text = "💰 골드 획득 보너스: +" + str(stats["gold_bonus"])
+	lbl_cooldown.text = "⏳ 쿨타임 가속: " + str(cd_percent) + "%"
+	
+	lbl_gold.text = "💰 추가 골드 획득: +" + str(stats["gold_bonus"])
+	
+	print("📊 스탯 UI가 업데이트 되었습니다!")
 
 # 규격에 따른 슬롯 동적 생성
 func _init_all_slots() -> void:

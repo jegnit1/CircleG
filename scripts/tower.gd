@@ -3,7 +3,6 @@ extends Marker2D
 
 # 장착된 스킬들과 각각의 쿨타임을 관리할 가방(배열)
 var active_skills: Array[Dictionary] = []
-var base_damage: float = DataManager.player_stats["base_damage"]
 
 func _ready() -> void:
 	# 🌟 [추가] UI에서 스킬을 선택했다는 신호를 귀 기울여 듣습니다.
@@ -20,33 +19,36 @@ func _on_skill_equipped(new_skill: SkillData) -> void:
 	})
 
 func _process(delta: float) -> void:
-	# 🌟 [추가] 매 프레임마다 내 가방 속 스킬들의 쿨타임을 돌립니다.
 	for i in range(active_skills.size()):
 		var skill_info: Dictionary = active_skills[i]
-		skill_info["timer"] += delta # delta(시간)를 더해서 타이머를 굴림
+		
+		# 🌟 [스탯 2 적용] 쿨타임 가속! (1.2면 시간이 1.2배 빠르게 흐름)
+		var cd_speed = DataManager.player_stats["cooldown_speed"]
+		skill_info["timer"] += (delta * cd_speed) 
 		
 		var skill_data: SkillData = skill_info["skill"]
 		
-		# 타이머가 스킬의 요구 쿨타임(cooldown)을 꽉 채웠다면?
 		if skill_info["timer"] >= skill_data.cooldown:
-			skill_info["timer"] = 0.0 # 쏜 다음엔 다시 0초로 초기화!
-			_fire_skill(skill_data)   # 스킬 발사!
+			skill_info["timer"] = 0.0 
+			_fire_skill(skill_data)
 
 # 빵야! 스킬을 쏘는 함수 (수정됨)
 func _fire_skill(skill: SkillData) -> void:
 	var target = _get_closest_target()
 	if target == null: return 
 	
-	# 1. 단일 타격 (기존에 만든 레이저 공격)
+	# 🌟 [스탯 3 적용] DataManager의 기본 공격력을 가져와서 계산!
+	var current_base_damage = DataManager.player_stats["base_damage"]
+	var final_damage: float = current_base_damage * skill.damage
+	
 	if skill.target_type == "HITSCAN":
-		var final_damage: float = base_damage * skill.damage
 		if target.has_method("take_damage"):
 			target.take_damage(final_damage)
 		_show_laser_effect(target.global_position)
 		
-	# 2. 광역 타격 (독구름, 폭발 등)
 	elif skill.target_type == "SUMMON":
-		_spawn_summon_area(skill, target.global_position)
+		# 데미지 계산이 끝난 값을 장판한테도 넘겨줍니다.
+		_spawn_summon_area(skill, target.global_position, final_damage)
 	
 # 🌟 [이펙트 2 본체] 타워에서 적까지 레이저 선을 그렸다가 지우는 함수
 func _show_laser_effect(target_pos: Vector2) -> void:
@@ -64,21 +66,24 @@ func _show_laser_effect(target_pos: Vector2) -> void:
 	tween.tween_property(line, "modulate:a", 0.0, 0.1) # a는 알파(투명도)값
 	tween.tween_callback(line.queue_free) # 투명해지면 화면에서 삭제!
 
-func _spawn_summon_area(skill: SkillData, target_pos: Vector2) -> void:
-	var summon_node = SummonedArea.new()
+# 🌟 이 함수 전체를 덮어씌워 주세요!
+func _spawn_summon_area(skill: SkillData, target_pos: Vector2, final_damage: float) -> void:
+	# 🔧 [수정 1] SummonArea -> SummonedArea 로 오타 수정!
+	var summon_node = SummonedArea.new() 
 	
-	# 장판에 필요한 데이터를 넘겨줍니다.
 	summon_node.global_position = target_pos
-	summon_node.damage = base_damage * skill.damage
+	
+	# 🔧 [수정 2] 삭제된 base_damage 대신, 위에서 계산해서 넘겨준 final_damage를 넣습니다!
+	summon_node.damage = final_damage 
 	summon_node.element = skill.element
 	
-	# [참고] 만약 CSV에 duration(유지시간) 데이터가 없다면 임의로 5초 유지 / 1초 틱으로 설정합니다.
+	var base_radius: float = 120.0
+	summon_node.radius = base_radius * DataManager.player_stats["effect_range"]
+	
 	summon_node.duration = 5.0 
 	summon_node.tick_interval = 1.0 
 	
-	
-	# 화면 최상단(current_scene)에 장판을 깝니다!
-	get_tree().current_scene.add_child(summon_node)
+	get_tree().current_scene.add_child(summon_node) 
 		
 # 📡 [신규 추가] 레이더: 가장 가까운 크립을 찾는 함수
 func _get_closest_target() -> Node2D:

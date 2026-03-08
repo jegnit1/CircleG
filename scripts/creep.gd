@@ -71,9 +71,9 @@ func _show_damage_text(amount: float) -> void:
 	text_tween.finished.connect(label.queue_free)
 
 func _die() -> void:
-	print("💀 [%s] 처치 됨!" % name)
-	GlobalSignalBus.enemy_killed.emit(gold_reward)
-	# [보너스] 죽을 때 골드를 주거나 하는 로직을 나중에 여기에 추가할 수 있습니다!
+	var final_gold = gold_reward + DataManager.player_stats["gold_bonus"]
 	
-	# queue_free()는 고도 엔진에서 "이 노드를 화면과 메모리에서 완전히 삭제해라!" 라는 아주 중요한 기본 함수입니다.
+	print("💀 [%s] 처치 됨! (+%d 골드)" % [name, final_gold])
+	
+	GlobalSignalBus.enemy_killed.emit(final_gold)
 	queue_free()
