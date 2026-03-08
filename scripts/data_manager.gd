@@ -1,32 +1,72 @@
 extends Node
 
-# 데이터 보관용 딕셔너리
 var artifacts_data: Dictionary = {}
+var stages_data: Dictionary = {} # 라운드별 데이터 보관
 
-# 노드 초기화 및 리소스 자동 로드
 func _ready() -> void:
-	_load_resources_from_dir("res://data/artifacts/", artifacts_data)
-	print("로드된 아티팩트 개수: ", artifacts_data.size())
+	# 게임 시작 시 모든 CSV 파일 파싱
+	_load_artifacts_from_csv("res://data/csv/artifacts.csv")
+	_load_stages_from_csv("res://data/csv/stages.csv") # 스테이지 데이터 로드
 
-# 디렉토리 순회 및 커스텀 리소스 동적 로드
-func _load_resources_from_dir(path: String, target_dict: Dictionary) -> void:
-	var dir: DirAccess = DirAccess.open(path)
-	if dir == null:
-		push_error("디렉토리 접근 실패: " + path)
+# 기존 아티팩트 로드 함수 (변경 없음)
+func _load_artifacts_from_csv(file_path: String) -> void:
+	if not FileAccess.file_exists(file_path): return
+	var file: FileAccess = FileAccess.open(file_path, FileAccess.READ)
+	var headers: PackedStringArray = file.get_csv_line()
+	while not file.eof_reached():
+		var row: PackedStringArray = file.get_csv_line()
+		if row.size() < headers.size() or row[0].strip_edges().is_empty(): continue
+		var row_data: Dictionary = {}
+		for i in range(headers.size()):
+			row_data[headers[i].strip_edges()] = row[i].strip_edges()
+		
+		var artifact_id: String = row_data.get("ID", "")
+		if artifact_id.is_empty(): continue
+		
+		var artifact: ArtifactData = ArtifactData.new()
+		artifact.id = artifact_id
+		artifact.name_kr = row_data.get("NAME_KR", "미정")
+		artifact.name_en = row_data.get("NAME_EN", "Unknown")
+		artifact.logic = row_data.get("LOGIC", "")
+		
+		var icon_path: String = "res://assets/icons/artifacts/" + artifact_id.to_lower() + ".png"
+		if FileAccess.file_exists(icon_path):
+			artifact.icon = load(icon_path)
+			
+		artifacts_data[artifact_id] = artifact
+	file.close()
+
+# 🌟 [추가됨] 스테이지 데이터 로드 함수
+func _load_stages_from_csv(file_path: String) -> void:
+	if not FileAccess.file_exists(file_path):
+		push_error("❌ 스테이지 CSV 파일 누락: " + file_path)
 		return
 		
-	for file_name in dir.get_files():
-		# 빌드 시 .tres 파일이 .remap으로 래핑되는 현상 대응
-		var clean_name: String = file_name.replace(".remap", "")
-		
-		if clean_name.ends_with(".tres") or clean_name.ends_with(".res"):
-			var resource_path: String = path + "/" + clean_name
-			var resource: Resource = load(resource_path)
+	var file: FileAccess = FileAccess.open(file_path, FileAccess.READ)
+	var headers: PackedStringArray = file.get_csv_line()
+	
+	while not file.eof_reached():
+		var row: PackedStringArray = file.get_csv_line()
+		if row.size() < headers.size() or row[0].strip_edges().is_empty():
+			continue
 			
-			# 고유 ID를 키값으로 딕셔너리에 적재
-			if resource and "id" in resource and resource.id != "":
-				target_dict[resource.id] = resource
+		var row_data: Dictionary = {}
+		for i in range(headers.size()):
+			# 엑셀에 빈칸이 있어도 안전하게 빈 문자열로 들어감
+			var value: String = row[i].strip_edges() if i < row.size() else ""
+			row_data[headers[i].strip_edges()] = value
+			
+		var stage_num: int = int(row_data.get("STAGE", "0"))
+		if stage_num > 0:
+			stages_data[stage_num] = row_data # STAGE 번호(1~100)를 Key로 딕셔너리 통째로 저장
+			
+	file.close()
+	print("✅ 로드된 스테이지 개수: ", stages_data.size())
 
-# 아티팩트 데이터 반환 인터페이스
+# 특정 스테이지(라운드)의 데이터를 반환하는 함수
+func get_stage_data(stage: int) -> Dictionary:
+	return stages_data.get(stage, {})
+	
+# 특정 아티팩트의 데이터를 반환하는 함수 (누락되었던 부분)
 func get_artifact(id: String) -> ArtifactData:
 	return artifacts_data.get(id, null)

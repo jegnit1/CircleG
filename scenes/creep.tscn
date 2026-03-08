@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dfkhlbxajgtgr"]
+
+[ext_resource type="Script" uid="uid://ekm3fqbklmay" path="res://scripts/creep.gd" id="1_fahu3"]
+
+[node name="Creep" type="Area2D" unique_id=1538221924]
+script = ExtResource("1_fahu3")
