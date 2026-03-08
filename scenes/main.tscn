@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://ctawv7j7ioxq5" path="res://scripts/main.gd" id="1_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://cv5nsnd3sub87" path="res://scenes/ui_layer.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://b1hepbom4hjoc" path="res://scripts/stage_manager.gd" id="3_sugp2"]
+[ext_resource type="PackedScene" uid="uid://dfkhlbxajgtgr" path="res://scenes/creep.tscn" id="4_jyhfs"]
 
 [node name="Main" type="Node" unique_id=1150734982]
 script = ExtResource("1_0wfyh")
@@ -18,3 +19,5 @@ position = Vector2(420, 280)
 
 [node name="StageManager" type="Node" parent="." unique_id=1599382179]
 script = ExtResource("3_sugp2")
+
+[node name="Creep" parent="StageManager" unique_id=1538221924 instance=ExtResource("4_jyhfs")]

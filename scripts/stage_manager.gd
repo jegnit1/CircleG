@@ -2,7 +2,8 @@ extends Node
 class_name StageManager
 
 @export var creep_scene: PackedScene
-@onready var center_tower: Node2D = $"../CenterTower"
+@onready var center_tower: Marker2D = $"../World/Tower"
+@onready var creep_container: Node2D = $"../World/CreepContainer"
 
 var current_stage: int = 1
 var max_creeps_allowed: int = 100
@@ -90,7 +91,7 @@ func _spawn_creep() -> void:
 	creep.current_hp = current_hp
 	creep.speed = current_speed
 	
-	get_parent().add_child(creep)
+	creep_container.add_child(creep)
 
 func _game_over() -> void:
 	set_process(false)

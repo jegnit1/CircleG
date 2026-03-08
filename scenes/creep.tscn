@@ -1,6 +1,69 @@
 [gd_scene format=3 uid="uid://dfkhlbxajgtgr"]
 
 [ext_resource type="Script" uid="uid://ekm3fqbklmay" path="res://scripts/creep.gd" id="1_fahu3"]
+[ext_resource type="Texture2D" uid="uid://ble7hya4m3ayx" path="res://assets/Zombie_Default_Walk.png" id="2_tawqf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5eihe"]
+atlas = ExtResource("2_tawqf")
+region = Rect2(16, 16, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hkahe"]
+atlas = ExtResource("2_tawqf")
+region = Rect2(80, 16, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7rvr"]
+atlas = ExtResource("2_tawqf")
+region = Rect2(144, 16, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_it1s1"]
+atlas = ExtResource("2_tawqf")
+region = Rect2(208, 16, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ki6dp"]
+atlas = ExtResource("2_tawqf")
+region = Rect2(272, 16, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58mtf"]
+atlas = ExtResource("2_tawqf")
+region = Rect2(336, 16, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tlps3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5eihe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hkahe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v7rvr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_it1s1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ki6dp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_58mtf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jeu5m"]
+size = Vector2(0.71875, 0.96875)
 
 [node name="Creep" type="Area2D" unique_id=1538221924]
 script = ExtResource("1_fahu3")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1452286613]
+sprite_frames = SubResource("SpriteFrames_tlps3")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=37801793]
+position = Vector2(-0.5, 0.5)
+scale = Vector2(32, 32)
+shape = SubResource("RectangleShape2D_jeu5m")
